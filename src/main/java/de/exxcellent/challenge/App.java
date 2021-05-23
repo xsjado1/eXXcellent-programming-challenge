@@ -1,5 +1,8 @@
 package de.exxcellent.challenge;
 
+import de.exxcellent.challenge.fileReader.CsvReader;
+import de.exxcellent.challenge.lists.ItemList;
+
 /**
  * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
  * design. Read: create your own classes and packages as appropriate.
@@ -14,9 +17,12 @@ public final class App {
      */
     public static void main(String... args) {
 
-        // Your preparation code …
+        CsvReader csvReader = new CsvReader("/de/exxcellent/challenge/weather.csv");
+        ItemList temperatures = csvReader.read();
+        temperatures.sortDescending();
 
-        String dayWithSmallestTempSpread = "Someday";     // Your day analysis function call …
+
+        String dayWithSmallestTempSpread = String.valueOf(temperatures.getItem(0).getDay());     // Your day analysis function call …
         System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
 
         String teamWithSmallestGoalSpread = "A good team"; // Your goal analysis function call …
