@@ -1,6 +1,9 @@
 package de.exxcellent.challenge.lists;
 
 import java.util.ArrayList;
+
+import de.exxcellent.challenge.comparators.ItemAscendingComparator;
+import de.exxcellent.challenge.comparators.ItemDescendingComparator;
 import de.exxcellent.challenge.objects.*;
 
 public class ItemList {
@@ -27,6 +30,14 @@ public class ItemList {
 	
 	public int getSize() {
 		return list.size();
+	}
+	
+	public void sortAscending() {
+		list.sort(new ItemAscendingComparator());		
+	}
+	
+	public void sortDescending() {
+		list.sort(new ItemDescendingComparator());	
 	}
 
 }
