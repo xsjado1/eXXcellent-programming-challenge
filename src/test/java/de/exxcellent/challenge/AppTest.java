@@ -4,11 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import de.exxcellent.challenge.fileReader.CsvReader;
+import de.exxcellent.challenge.lists.CustomList;
 import de.exxcellent.challenge.lists.ItemList;
 import de.exxcellent.challenge.objects.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 /**
@@ -19,9 +19,9 @@ class AppTest {
 
     private String successLabel = "not successful";
     
-    private Item item1, item2, item3, item4;
-    private ItemList itemList;
-    private ItemList temperatures;
+    private Item2Props item1, item2, item3, item4;
+    private CustomList itemList;
+    private CustomList temperatures;
     
 
     @BeforeEach
@@ -29,10 +29,10 @@ class AppTest {
         successLabel = "successful";
         
         itemList = new ItemList();
-        item1 = new Item(1, 1, 10);
-        item2 = new Item(2, 12, 8);
-        item3 = new Item(3, -2, 15);
-        item4 = new Item(4, 4, -8);
+        item1 = new Item2Props("1", 1, 10);
+        item2 = new Item2Props("2", 12, 8);
+        item3 = new Item2Props("3", -2, 15);
+        item4 = new Item2Props("4", 4, -8);
         itemList.addItem(item1);
     	itemList.addItem(item2);
     	itemList.addItem(item3);
@@ -41,7 +41,7 @@ class AppTest {
     	
     	String path = "/de/exxcellent/challenge/weather.csv";
     	CsvReader csvReader = new CsvReader(path);
-    	temperatures = csvReader.read();
+    	temperatures = csvReader.readColumns("Day","MxT","MnT");
     	
     }
 
@@ -59,12 +59,12 @@ class AppTest {
 
     
     @Test
-    void temperatureSpreadTest() {
+    void absoluteDifferenceTest() {
         
-    	assertEquals( 9, item1.getTemperatureSpread());
-    	assertEquals( 4, item2.getTemperatureSpread());
-    	assertEquals( 17, item3.getTemperatureSpread());
-    	assertEquals( 12, item4.getTemperatureSpread());
+    	assertEquals( 9, item1.getAbsoluteDifference());
+    	assertEquals( 4, item2.getAbsoluteDifference());
+    	assertEquals( 17, item3.getAbsoluteDifference());
+    	assertEquals( 12, item4.getAbsoluteDifference());
     }
     
     @Test
@@ -77,17 +77,17 @@ class AppTest {
     	
     	itemList.sortAscending();
     	
-    	assertEquals(2, itemList.getItem(0).getDay());
-    	assertEquals(1, itemList.getItem(1).getDay());
-    	assertEquals(4, itemList.getItem(2).getDay());
-    	assertEquals(3, itemList.getItem(3).getDay());
+    	assertEquals("2", itemList.getItem(0).getPrimaryKey());
+    	assertEquals("1", itemList.getItem(1).getPrimaryKey());
+    	assertEquals("4", itemList.getItem(2).getPrimaryKey());
+    	assertEquals("3", itemList.getItem(3).getPrimaryKey());
     	
     	itemList.sortDescending();
     	
-    	assertEquals(3, itemList.getItem(0).getDay());
-    	assertEquals(4, itemList.getItem(1).getDay());
-    	assertEquals(1, itemList.getItem(2).getDay());
-    	assertEquals(2, itemList.getItem(3).getDay());
+    	assertEquals("3", itemList.getItem(0).getPrimaryKey());
+    	assertEquals("4", itemList.getItem(1).getPrimaryKey());
+    	assertEquals("1", itemList.getItem(2).getPrimaryKey());
+    	assertEquals("2", itemList.getItem(3).getPrimaryKey());
     	
     }
     

@@ -1,52 +1,26 @@
 package de.exxcellent.challenge.objects;
 
-public class Item {
+/**
+ * This is an interface to implement an item of the table.
+ * An item consists of a primary key and a certain number of properties.
+ * It provides two methods to return the primary key and 
+ * to calculate the absolute difference of two properties. 
+ * @author Sebastian Jestaedt
+ *
+ */
+
+public interface Item {
 	
-	private int day,MxT,MnT;
+	/***
+	 * This method returns the primary key of the list object. 
+	 * @return the primary as String.
+	 */
+	public String getPrimaryKey();
 	
-	
-	public Item(int day,int MxT, int MnT) {
-		this.setDay(day);
-		this.setMxT(MxT);
-		this.setMnT(MnT);
-	}
-
-
-	public int getDay() {
-		return day;
-	}
-
-
-	public void setDay(int day) {
-		this.day = day;
-	}
-
-
-	public int getMnT() {
-		return MnT;
-	}
-
-
-	public void setMnT(int mnT) {
-		MnT = mnT;
-	}
-
-
-	public int getMxT() {
-		return MxT;
-	}
-
-
-	public void setMxT(int mxT) {
-		MxT = mxT;
-	}
-	
-	
-	public int getTemperatureSpread() {
-		int spread = Math.abs(MxT - MnT);
-		return spread;
-	}
-	
-	
+	/**
+	 * This method calculates the absolute difference of two properties.
+	 * @return the absolute difference of two properties as int.
+	 */
+	public int getAbsoluteDifference();
 
 }
