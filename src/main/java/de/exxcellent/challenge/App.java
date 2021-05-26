@@ -20,16 +20,15 @@ public final class App {
 
         CsvReader weatherReader = new CsvReader("/de/exxcellent/challenge/weather.csv");
         CustomList weatherTemperatures = weatherReader.readColumns("Day","MxT","MnT");
-        weatherTemperatures.sortDescending();
         
         CsvReader footballReader = new CsvReader("/de/exxcellent/challenge/football.csv");
         CustomList footballGoals = footballReader.readColumns("Team","Goals","Goals Allowed");
-        footballGoals.sortAscending();
 
-        String dayWithSmallestTempSpread = weatherTemperatures.getItem(0).getPrimaryKey();     // Your day analysis function call …
+        String dayWithSmallestTempSpread = weatherTemperatures.getItemSmallestAbsDifference().getPrimaryKey();     // Your day analysis function call …
         System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
 
-        String teamWithSmallestGoalSpread = footballGoals.getItem(0).getPrimaryKey(); // Your goal analysis function call …
+        String teamWithSmallestGoalSpread = footballGoals.getItemSmallestAbsDifference().getPrimaryKey(); // Your goal analysis function call …
         System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
+        
     }
 }

@@ -64,5 +64,10 @@ abstract public class CustomList {
 	 * This method sorts the list in descending order.
 	 */
 	public abstract void sortDescending();
+	
+	/**
+	 * This method returns the item with the smallest absolute difference.
+	 */
+	public abstract Item getItemSmallestAbsDifference();
 
 }
